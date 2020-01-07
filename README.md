@@ -172,11 +172,16 @@ ECMAScript
 
 # Tag 2 (07.01.2020)
 # Funktionen
+/*
+let = Blockgebundene Variablen
+var = Globale Variablen
+*/
+
 function Bezeichner(Parameter) {
 }
 
 function fx2(x){
-	return x **2		// console.log(fx2(3))
+	return x **2;		// console.log(fx2(3))
 }					
 
 function fxy (x,y){
@@ -184,7 +189,65 @@ function fxy (x,y){
 }
 
 function fxyz (x,y,z=3){
-	return x ** y * z
+	return x ** y * z;
 }
 console.log(fxyz(3,4,2))	// console.log(fxyz(3,4))
 
+# Funktionen2
+var fx = function(x){
+
+}
+
+var = fx2 = function(x){
+	return x ** 2;
+}
+
+# Funktionen3 (Pfeilfunktion, Arrow Funktion, Cambda)
+var fx = (x) => x ** 2;
+
+var fxy=(x,y) => {
+	return x ** y;
+}
+
+# Array
+
+// pop() letzte Poision entfernen (rechte seite)
+// schift() von vorne entfernen (linke seite)
+a= Array(5)
+array(6) [1,2,"hallo","xu",88,66]
+a[1]
+
+a = [14,57,8,6,5,4,58,484]
+a.sort()	// Sotieren
+
+function sotieren(a,b){
+	return a-b;				//Sotiert aufsteigend
+}
+a.sort((a,b) => b-a)		//Sotiert absteigend
+
+a.forEach(v => {
+console.log("Element des Arrays", v)
+});
+
+a.reduce( (a,b) => a + b )				// Zusammenzählen (Summieren)
+a.reduce( (a,b) => a + b ) => a<b?b:a) 	// Maximalwert
+
+function create_xy(x,y){
+return{
+x: x,
+y: y
+}
+}
+
+a=[create_xy(10,20), create_xy(44,15), create_xy(11,20)]
+function create_xy(x,y){
+return{
+x: x,
+y: y
+}
+}
+
+a.sort((a,b)=>b.x-a.x))
+
+z= new Array(50).fill(0)	// Mit fill füllt er alle Arrys mit den Parameter aus.
+z= new Array(50).fill(0).map(m=>Math.random())	// Füllt alle Arrays mit Zufallszahlen
