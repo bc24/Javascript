@@ -249,5 +249,17 @@ y: y
 
 a.sort((a,b)=>b.x-a.x))
 
-z= new Array(50).fill(0)	// Mit fill füllt er alle Arrys mit den Parameter aus.
+z= new Array(50).fill(0)						// Mit fill füllt er alle Arrys mit den Parameter aus.
 z= new Array(50).fill(0).map(m=>Math.random())	// Füllt alle Arrays mit Zufallszahlen
+a.map(m=>Math.random())							// Zufallszahlen
+
+a.filter( f = > f.x % 2 == 1)					// Ausgabe von Ungerade Werte
+
+a.some(f = > fx % 2 == 1) 						// einwert Übereinstimmung
+a.every(f = > fx % 2 == 1)						// Alle Werte müssen übereinstimmen 
+a.findIndex(f => f.x == 11)						// Index Ausgabe Stelle in diesem fall für die 11
+a.join("\n") 									// Array ausgeben mit einen Zeilenumbruch
+a.slice(3,0, "Vogel")							// Löscht das Array 3 und ersetzt es mit Vogel
+
+
+
