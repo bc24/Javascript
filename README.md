@@ -171,3 +171,20 @@ ECMAScript
 
 
 # Tag 2 (07.01.2020)
+# Funktionen
+function Bezeichner(Parameter) {
+}
+
+function fx2(x){
+	return x **2		// console.log(fx2(3))
+}					
+
+function fxy (x,y){
+	return x **y;
+}
+
+function fxyz (x,y,z=3){
+	return x ** y * z
+}
+console.log(fxyz(3,4,2))	// console.log(fxyz(3,4))
+
