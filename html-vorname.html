@@ -1,0 +1,33 @@
+<html>
+<head></head>
+<body>
+
+
+Vorname: <input id='vorname'><br>
+Nachname: <input id='nachname'><br>
+Alter: <input id='alter'><br>
+<button onClick='showData()'>ClickME!</button>
+
+<p id='out'></p>
+
+
+<script>
+function showData() {
+
+ let vorname = document.getElementById('vorname').value
+ let nachname = document.getElementById('nachname').value
+ let alter = document.getElementById('alter').value
+ 
+ let feld = document.getElementById('out');
+ 
+ let txt = "Hallo " + vorname + " " + nachname;
+  
+ feld.innerText = txt;
+
+}
+
+</script>
+
+
+</body>
+</html>

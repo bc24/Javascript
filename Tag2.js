@@ -19,8 +19,40 @@ function fibonacci(n) {
 }
 fibonacci(10) // Beispiel Ausgabe für den Wert 10
 
+// Zweite Lösung mit schleife
+function fibonacci( n ) {
+ let a = 0;
+ let b = 1;
+ 
+ while(n-- > 0) {
+	let zahl = a + b;
+	
+	console.log( zahl );
+	 
+	a = b;
+ 	b = zahl
+ 
+  }
+}
+
 // Summiere die Zahlen die Fibonacci Folge aus der ersten Aufgabe.
-fibonacci.reduce( (a,b) => a + b )
+function fibonacci_summe( n ) {
+ let a = 0;
+ let b = 1;
+ let summe = 0;
+ 
+ while(n-- > 0) {
+	let zahl = a + b;
+	
+	//console.log( zahl );
+	summe += zahl;
+	 
+	a = b;
+ 	b = zahl
+ 
+  }
+  console.log(summe)
+}
 
 // Erstelle ein Script mit den Functionen:
 // Eine Function soll 3 Parameter deklarieren, (Vorname, Nachname, Alter)
@@ -32,22 +64,68 @@ fibonacci.reduce( (a,b) => a + b )
 // Hilfe unter https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
 
 
-Personen= Array("Vorname","Nachname","Alter");
-
-var min = 18;
-	max = 99;
-function Alter (min, max){
-	return Math.floor(Math.random()*(max-min+1))+min;
+//
+// Funktion zur Erstellung einer Zahl 
+// zwischen 18 und 99
+//
+function random_alter() {
+	let min = 18;
+	let max = 99;
+	
+	return parseInt( Math.random() * ( max - min ) + min) + 1;
 }
-Alter(18,99)
 
-function Personen(Vorname,Nachname,Alter){
-	Vorname = Vorname;
-	Nachname = Nachname;
-	Alter = new Array(3).fill(value[, 18[, 99[,Alter]]]).map(m=>Math.random())
-	Ausgabe = alter.filter( Alter => Alter <= 25 && alter.filter(Alter => Alter >= 40 )
-	console.log("Alle Personen unter 25:" + " " + Unter25 \n "Alle Personen über 40:" + " " + Ueber40)
+//
+// Erstellt ein "Personen" Objekt
+// mit einem Vornamen, einem Nachnamen und einem 
+// Alter
+//
+//
+function create_person( vorname, nachname, alter ){
+	return {
+		vorname: vorname,
+		nachname: nachname,
+		alter: alter
+	};
 }
-console.log(Ausgabe)
+
+//
+// Erzeugt ein Array mit num_persons Personen
+// Ruft die create_person Funktion auf und speichert
+// das erhaltene Objekt in dem Array persons
+//
+//
+function create_person_array( num_persons ) {
+	let persons = []
+	
+	
+	for( let i = 0; i < num_persons; i++) {
+	 let person = create_person("Vorname"+i,"Nachname"+i, random_alter());
+	 persons.push( person ) 
+	}
+	
+	return persons;
+}
+
+//
+// Ruft die Funktion create_person_array auf und
+// erstellt ein Array mit n Personen
+//
+let persons = create_person_array(3);
+console.log(persons); // Kontrollausgabe
+
+//
+// Filterung aller Personen deren Alter < 25 und
+// > 40 ist 
+//
+persons = persons.filter( p => p.alter >= 25 && p.alter <= 40 );
+console.log(persons); // Kontrollausgabe
+
+//
+// Mit der MAP Funktion werden aus dem Array
+// persons alle Vornamen gefiltert 
+//
+let persons_firstname = persons.map( p => p.vorname ) ;
+console.log( persons_firstname ); // Kontrollausgabe
 
 	
