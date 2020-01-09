@@ -7,10 +7,11 @@ Aufgabe 2
 Erstelle ein Array mit 10 Zufallszahlen. Zeichne diese Zufallszahlen in das Raster ein (Siehe Tafel für ein Beispiel).
 
 Aufgabe 3
-Letzten 3 Punkte mit animieren und nach zeichnen.
+Erweitere die Aufgabe 2 und implementiere einen Intervall.
+Dieser Intervall soll jede Sekunde eine neue Zufallszahl zum Array hinzufügen und danach die Linien im Raster neu zeichnen.
 
-ctx.fillRect(0,0,ctx.canvas.width,ctx.height)
-ctx.clearRect(1,1,ctx.canvas.width-2,ctx.height-2)
+Aufgabe 4
+Löse die Aufgabe 2 vom Vortag (08.01.2020)
 -->
 
 <html>
@@ -142,13 +143,18 @@ ctx.lineTo(250,350)
 ctx.stroke()
 
 
-
+// Einfügen vom Text "Canvas"
 let txt ='Canvas'
 ctx.font = "100px Arial";
 let txtwidth = ctx.measureText(txt).width
 ctx.strokeText(txt,ctx.canvas.width/2-txtwidth/2, ctx.canvas.height/2-12/2)
 
-
+function random_kurs() {
+	let min = 0;
+	let max = 70;
+	
+	return parseInt( Math.random(0,70) * ( max - min ) );
+}
 
 
   

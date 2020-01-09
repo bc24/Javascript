@@ -11,7 +11,7 @@ fill()
 beginPath()
 clearRect(x,y,width,height)
 setInterval(Funksion,Interval in Milisekunden)			// Neue Figur beginnen
-setTimeout(Funksion,Interval in Milisekunden)			// 
+setTimeout(Funksion,Interval in Milisekunden)			
 clearInterval(ID)
 clearTimeout(ID)
 requestAnimationFrame(Funksion)
