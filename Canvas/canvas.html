@@ -1,0 +1,45 @@
+<html>
+<head></head>
+<body>
+
+<canvas id='cvs' width='600px' height='400px' style='background-color:#d1d1d1;'></canvas>
+
+
+<script>
+let img = new Image(112,108);
+img.src = "mad.png";
+let cvs = document.getElementById('cvs');
+let ctx = cvs.getContext('2d');
+
+counter = 0;
+i = 0;
+moveLeft = true;
+function moveImage() {
+ ctx.clearRect(0,0,600,400);
+ ctx.drawImage(img, 100 + i * 1 , 100 )
+ 
+ if(i > 300) {
+   moveLeft = false;
+   counter++;
+ }
+ else if (i < 0) 
+   moveLeft = true;
+
+ i += moveLeft ? 2 : -2 
+}
+
+function move() {
+ moveImage();
+ 
+ if( counter < 2) {
+	requestAnimationFrame( move )
+ }
+}
+requestAnimationFrame( move )
+
+</script>
+
+</body>
+
+
+</html>
