@@ -1,0 +1,112 @@
+<!--
+Löse die Probleme im Beispielskript:
+1)	Ermögliche die Markierung eines einzelnen Feldes.
+2)	Verhindere, dass die Linien des Grid’s überzeichnet werden.
+Beim Klicken auf ein Feld soll dies "aktiviert" werden. Ändere die Farbe in Rot.
+
+
+// https://codepen.io/
+// https://javascript.info/event-details
+// https://www.quirksmode.org/js/events_mouse.html
+// https://o7planning.org/de/12293/anleitung-javascript-mouseevent
+// https://o7planning.org/de/12171/ecmascript-javascript
+// https://www.kirupa.com/html5/drag.htm
+// https://wiki.selfhtml.org/wiki/JavaScript/Tutorials/Mouse_and_More
+// https://www.geeksforgeeks.org/using-javascript-interact-browser-capturing-mouse-positions-every-given-interval-time/
+-->
+
+<html>
+<head>
+</head>
+<body>
+<body onLoad="drawGrid(10,10);">
+
+<canvas id='cvs' width='600px' height='400px' style='border: 1px solid #d1d1d1;'></canvas>
+
+<style>
+  div {
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+  }
+</style>
+<div style="background:blue" onmouseover="alert('Hallo')"></div><br>
+<div style="background:red" onmouseover="alert('Hier gibt es nichts')"></div>
+
+ 
+<script>
+function drawGrid( x, y ) {
+
+
+ let cvs = document.getElementById('cvs');
+ let ctx = cvs.getContext('2d');
+ 
+ let width  = Number(ctx.canvas.width);
+ let height = Number(ctx.canvas.height);
+ 
+ let x_space = width / x;
+ let y_space = height / y;
+ 
+ 
+ ctx.clearRect( 0,0, width,height )
+ 
+ ctx.beginPath();
+ 
+ ctx.font = "14px Arial";
+ 
+ for( let i = 0; i < width; i += x_space ) {
+   ctx.moveTo( i, 0 );
+   ctx.lineTo( i, height );   
+ }
+ 
+ for( let i = 0; i < width; i += y_space ) {
+   ctx.moveTo( 0, i );
+   ctx.lineTo( width, i );   
+ }
+ ctx.stroke();
+ 
+ cvs.onmousemove = function( evt ) {
+  x_space = ctx.canvas.width / x ;
+  y_space = ctx.canvas.height / y ;
+  
+  x_dim  = parseInt( (evt.x-cvs.offsetLeft) / x_space );
+  y_dim  = parseInt( (evt.y-cvs.offsetTop) / y_space );
+  
+  x_start = x_dim * x_space;
+  y_start = y_dim * y_space;
+  
+  ctx.fillStyle="#ffff00";
+  
+  ctx.fillRect( x_start+1, y_start+1, x_space-2, y_space-2 );
+  ctx.stroke();
+
+//  ctx.fillStyle="#ffffff";  
+//  ctx.fillRect(x_start-2, y_start-2, x_space+3, y_space+3)
+//  ctx.stroke();
+  
+ctx.opacity = Math.random();
+
+
+
+
+
+
+ } 
+}
+
+function drag(evt) {
+  if (selectedElement) {
+    evt.preventDefault();
+    var dragX = evt.clientX;
+    var dragY = evt.clientY;
+    selectedElement.setAttributeNS(null, "x", dragX);
+    selectedElement.setAttributeNS(null, "y", dragY);
+  }
+}
+
+
+
+</script>
+</body>
+</html>
