@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <title>Klassen</title>
+    </head>
+    <body>
+        <script>
+            /*
+        Aufgabe 1    
+        Erstelle eine Klasse zur Darstellung von Dreiecken.
+        Implementiere einen Konstruktor und deklariere als Parameter alle benötigten Werte.
+        (a, b, c, alpha, beta, gamma, hc , p, q).
+
+        Speichere die übergebenen Werte als Instanzattribute.
+        Füge eine Funktion "print" hinzu, print gibt alle Werte des Objektes aus.
+
+        Aufgabe 2
+        Erweitere die Klasse Dreiecke mit einer Klasse RDreieck.
+        Führe in dieser Klasse einen Plausibilitätstest für die Seitenlägen durch.
+        Dieser Test sollte schon im Konstruktor erfolgen.
+        Stimmen die Werte nicht, werfe ein Exception mit "throw ne Error("Werte nicht  plausibel");" 
+
+        Aufgabe 3
+        Erweitere das RDreieck mit den Werten unde Prüfungen für Alpha, Beta, Gamma
+
+        Aufgabe 4
+        Passe das RDreieck so an, dass nur noch 2 übergebene Werte rechen.
+        Erstelle hierfür eine statische Methode, welche die Werte berechnet und danach ein
+        instanziiertes Dreieck zurückgibt.
+        Berechte die fehlenden Werte in Konstruktor.
+        Begrense dich auf a, b, c, Alpha, Beta, Gamma.
+
+        Point
+        =====
+
+        */
+
+        class Dreieck {
+
+
+        // Überprüfung für Alpha
+        calcAlpha(obj){
+            if(obj.beta){
+                obj.alpha=90-obj.beta;
+            }
+            else if (obj.b && obj.c){
+                obj.alpha = Math.acos(obj.b/obj.c) * 180 / Math.PI
+            }
+            else if (obj.a && obj.c){
+                obj.alpha=Math.asin(obj.a/obj.c) * 180 / Math.PI
+            }
+            else if (obj.a && obj.b){
+                obj.alpha = Math.atan(obj.a/obj.b) * 180 / Math.PI
+
+            }
+            console.log(obj)
+        }
+        
+
+        // Überprüfung für Beta
+        calcBeta(obj){
+            if(obj.alpha){
+                obj.alpha=90-obj.beta;
+            }
+            else if (obj.b && obj.c){
+                obj.alpha = Math.acos(obj.b/obj.c) * 180 / Math.PI
+            }
+            else if (obj.a && obj.c){
+                obj.alpha=Math.asin(obj.a/obj.c) * 180 / Math.PI
+            }
+            else if (obj.a && obj.b){
+                obj.alpha = Math.atan(obj.a/obj.b) * 180 / Math.PI
+
+            }
+            console.log(obj)
+        }
+
+	    constructor(a, b, c, alpha, beta, gamma, hc , p, q) {
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.alpha = alpha;
+		this.beta = beta;
+		this.gamma = gamma;
+		this.hc = hc;
+		this.p = p;
+		this.q = q;
+		
+		this.checkValues()
+	}
+	test=new Dreieck(3,4,5,3,36.9,53.1,90,3.2,1.8)
+}
+
+
+
+Dreieck.prototype.checkValues = function() {
+	
+	if( !(typeof( this.a ) === "number" 	&& typeof( this.b ) === "number"    	&& typeof( this.c ) === "number" 
+	&& typeof( this.alpha ) === "number"  	&& typeof( this.beta ) === "number"  	&& typeof( this.gamma ) === "number" 
+	&& typeof( this.hc ) === "number"  		&& typeof( this.p ) === "number"   		&& typeof( this.q ) === "number") )
+		throw new Error("Werte nicht plausibel");
+		
+	if( ! ( (this.a**2 + this.b**2).toFixed(3) == (this.c**2).toFixed(3) ) )
+		throw new Error("Werte nicht plausibel" + (this.a**2 + this.b**2).toFixed(3) + " : " +(this.c**2).toFixed(3));
+	
+
+	if( ! ( (this.c**2 - this.b**2).toFixed(3) == (this.a**2).toFixed(3) ) )
+		throw new Error("Werte nicht plausibel" + (this.c**2 + this.b**2).toFixed(3) + " : " +(this.a**2).toFixed(3));
+
+	if( ! ( (this.c**2 - this.a**2).toFixed(3) == (this.b**2).toFixed(3) ) )
+		throw new Error("Werte nicht plausibel" + (this.c**2 + this.a**2).toFixed(3) + " : " +(this.b**2).toFixed(3));
+		
+	
+	if( !( this.alpha > 0 && this.beta > 0 
+			&& this.alpha + this.beta  == this.gamma	 
+			&& this.alpha + this.beta == 90 
+			&& this.alpha + this.beta + this.gamma == 180 
+		  ) 
+	  )	
+		throw new Error("Werte nicht plausibel" + " Winkel stimmen nicht");
+}
+
+
+Dreieck.prototype.print = function() {
+	let str = "Daten des Dreiecks \n";
+	str += "a: " + this.a + "\n";
+	str += "b: " + this.b + "\n";
+	str += "c: " + this.c + "\n";
+	str += "alpha: " + this.alpha + "\n";
+	str += "beta: " + this.beta + "\n";
+	str += "gamma: " + this.gamma + "\n";
+	str += "hc: " + this.hc + "\n";
+	str += "p: " + this.p + "\n";
+	str += "q: " + this.q + "\n";
+	console.log( str ) 
+	
+}
+
+
+class RDreieck extends Dreieck {
+	constructor(a, b, c, alpha, beta, gamma, hc , p, q ) {
+		super(a, b, c, alpha, beta, gamma, hc , p, q);
+		
+		this.checkValues();
+	}
+	
+}	
+
+
+RDreieck.prototype.checkValues = function() {
+
+
+	if( ! (( this.a ** 2 / this.c ).toFixed(3) == (this.q).toFixed(3) ) )
+		throw new Error("Werte nicht plausibel" + ( this.a ** 2 / this.c ).toFixed(3) + " : " + (this.q).toFixed(3));
+		
+	
+	if( ! ( this.c - this.q  == this.p ) )
+		throw new Error("Werte nicht plausibel"  + ( this.c - this.q  == this.p ));
+		
+	if( ! ( Math.sqrt(this.p * this.q).toFixed(3) == this.hc.toFixed(3) ) )
+		throw new Error("Werte nicht plausibel [sqrt(p*q) != hc]"  );
+
+}
+
+        </script>
+    </body>
+</html>
