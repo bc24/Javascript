@@ -1,0 +1,122 @@
+<html>
+    <head></head>
+    <body>
+        <canvas id='cvs' width='600px' height='400px' style='background-color:#d1d1d1;'></canvas>
+        <script>
+            
+            function set_drawing_context() {
+        var width = window.innerWidth - 16;
+        if (width < 300) width = 300;
+        var height = width / 2;
+
+        var canvas_html = "<canvas";
+        canvas_html += " id=" + canvas_name;
+        canvas_html += " width=" + width;
+        canvas_html += " height=" + height;
+        canvas_html += ">Sorry, your browser doesn't appear to support the HTML-5 Canvas</canvas>";
+        div.innerHTML = canvas_html;
+
+        var canvas = document.getElementById(canvas_name);
+        if (!canvas) return;
+        var ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        if (!table) {
+            table = new Table();
+            table.initialize( game );
+        }
+
+        // table center is (0,0);
+        // length is -1 .. +1;
+        // width is -.5 .. +.5
+        ctx.translate( width/2, height/2 );
+        ctx.scale( height*table_scale, height*table_scale );
+
+        table.ctx = ctx;
+
+        var canvas_offset = new Vector(
+                canvas.offsetLeft + width/2,
+                canvas.offsetTop + height/2
+                );
+
+        function mouse_vec(evt) {
+            var vec = new Vector( evt.clientX + window.scrollX, evt.clientY + window.scrollY );
+            vec.subtract( canvas_offset );
+            vec.scale_down( height * table_scale );
+            return vec;
+        }
+
+        function mouse_down(evt) {
+          evt.preventDefault();
+          table.player().mouse_down(mouse_vec(evt));
+        }
+
+        function mouse_up(evt) {
+          evt.preventDefault();
+          table.player().mouse_up(mouse_vec(evt));
+        }
+
+        function mouse_move(evt) {
+          evt.preventDefault();
+          table.player().mouse_move(mouse_vec(evt));
+        }
+
+        canvas.addEventListener( 'touchstart', mouse_down, false );
+        canvas.addEventListener( 'touchend', mouse_up, false );
+        canvas.addEventListener( 'touchmove', mouse_move, false );
+        canvas.addEventListener( 'mousedown', mouse_down, false );
+        canvas.addEventListener( 'mouseup', mouse_up, false );
+        canvas.addEventListener( 'mousemove', mouse_move, false );
+    }
+
+    set_drawing_context();
+
+    if (table) {
+        window.onresize = set_drawing_context;
+
+        function key_down_fn(evt) {
+            if (evt.keyCode == 48) { // '0'
+                for (i in table.balls) {
+                    table.balls[i].stop();
+                }
+            }
+            if (evt.keyCode == 57) { // '9'
+                table.ball_in_hand = 1;
+            }
+            if (evt.keyCode >= 49 && evt.keyCode <= 55) { // 1..7
+                strength_scaling = ((evt.keyCode - 48) / 4) * 2.5;
+            }
+            if (evt.keyCode == 56) { // '8'
+                masse_scaling = 4;
+            }
+        }
+
+        function key_up_fn(evt) {
+            if (evt.keyCode >= 49 && evt.keyCode <= 55) { // 1..7
+                strength_scaling = 2.5;
+            }
+            if (evt.keyCode == 56) { // '8'
+                masse_scaling = 1;
+            }
+        }
+
+        document.onkeydown = key_down_fn;
+        document.onkeyup = key_up_fn;
+
+        function draw_fn() {
+            table.draw();
+            if (current_game != table.game) {
+              current_game = table.game;
+              set_player_type("player1_type", 0);
+              set_player_type("player2_type", 1);
+            }
+            if (table.is_stable() && table.update_id != null) {
+                clearInterval( table.update_id );
+                table.update_id = null;
+                table.game.shot_complete();
+                table.player().begin_shot();
+            }
+        }    
+        </script>
+    </body>
+</html>

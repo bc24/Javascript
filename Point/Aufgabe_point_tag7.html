@@ -1,0 +1,98 @@
+
+<html>
+<head></head>
+<body>
+    <canvas id='cvs' width='600px' height='400px' style='background-color:#d1d1d1;'></canvas>
+    <script>
+/*
+Aufgabe 1
+Implementiere die Klasse Point und Line.
+Orientiere dich am Klassendiagramm am Whiteboard
+
+Aufgabe 2
+Die Formeln für die Methoden Point.getDistance und Point.getAngle sind am Whiteboard zu finden
+
+Aufgabe 3
+Erstelle ein HTML Seite mit einem Canvas
+
+Aufgabe 4
+Implementiere die draw Methode aus der Klasse Line. Die draw Methode deklariert einen Parameter ctx. Der Parameter ctx stellt den Kontext zum Zeichen dar.
+
+Aufgabe 5
+Implementiere einen Mausevent zur Aufzeichnung von Mauseingaben. Jeder Klick setzt einen Punkt und erzeugt eine Point Instanz (max 2)
+
+Point                                                       Line      
+_____________________________                               _____________________________
+x : Nubmer                                                  Pt1 : Point
+y : Number                                                  Pt2 : Point
+-----------------------------                               -----------------------------
+create Point(angle,distance)                                draw(context)
+getDistance(Point):Number                                   _____________________________
+getAngle(Point:Number)
+_____________________________
+
+*/
+
+let cvs = document.getElementById('cvs');
+let ctx = cvs.getContext('2d');
+
+
+    class Point{
+    constructor(x,y){
+        this.x=y;
+        this.y=y;
+    }
+    createPoint(angle,distance)
+    getDistance(Point:number);
+    getAngle(Point:number);
+}
+
+function zeichenen(ctx) {
+        x=x+cos(angle)*distance
+    y=y+sin(angle)*distance
+
+    pt1=new Point(10,20);
+    pt2=new Point(20,30);
+
+    dist=pt1.getDistance(pt2);
+    ang=pt1.getAngle(pt2);
+    pt3=pt2.createPoint(ang.dis);
+
+    line=new Line(pt1,pt3);
+    line.draw(ctx)
+    
+}
+
+function blaaa(x,y) {
+    var a = x1 - x2;
+    var b = y1 - y2;
+    var c = Math.sqrt( a*a + b*b );
+    
+}
+
+class Line{
+
+    constructor(x,y){
+        
+        let width  = Number(ctx.canvas.width);
+        let height = Number(ctx.canvas.height);
+
+        let x = width - x;
+        let y = height - y;
+
+        this.pt1=pt1;
+        this.pt2=pt2;
+
+        createLine(pt1,pt2);
+        draw(ctx.context){
+            x=x+cos(angle)*distance
+            y=y+sin(angle)*distance
+
+        
+    }
+}
+
+
+    </script>
+</body>
+</html>
