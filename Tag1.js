@@ -13,22 +13,22 @@ vorkommawert = 0;
 /*
 	Trennung der Vorkommazahl und der Nachkommazahl
 */
-while( zahl > 1 ) {
-  vorkommawert += 1;
-  zahl -= 1;
+while (zahl > 1) {
+    vorkommawert += 1;
+    zahl -= 1;
 }
 
 
 nachkommawert = zahl
-console.log( vorkommawert, nachkommawert)
+console.log(vorkommawert, nachkommawert)
 
 
 
 vorkommabin = ""
 nachkommabin = ""
-while( vorkommawert != 0) {
- vorkommabin =( vorkommawert % 2 ) + vorkommabin 
- vorkommawert = parseInt( vorkommawert / 2)
+while (vorkommawert != 0) {
+    vorkommabin = (vorkommawert % 2) + vorkommabin
+    vorkommawert = parseInt(vorkommawert / 2)
 }
 
 
@@ -36,65 +36,63 @@ while( vorkommawert != 0) {
  Zur Begrenzung der Stellen der Nachkommazahl
  Endlosschleife wenn eine Periode auftreten sollte
 */
-counter = 0 
-		
+counter = 0
+
 /*
  Berechnung der Nachkomma Dualzahl
 */
-while( nachkommawert != 0 ) {
- nachkommawert *= 2
- 
-/*
-	Alternative zur If/Else Anweisung
-	nachkommabin += nachkommawert >= 1 ? "1" : "0"
-	 if (nachkommawert >= 1)  
-	 nachkommawert -= 1
-*/
+while (nachkommawert != 0) {
+    nachkommawert *= 2
 
- if (nachkommawert >= 1)  {
-   nachkommabin += "1";
-   nachkommawert -= 1;
- }
- else 
-   nachkommabin += "0"
- 
- 
- if(counter++ > 53) 
-   break
+    /*
+    	Alternative zur If/Else Anweisung
+    	nachkommabin += nachkommawert >= 1 ? "1" : "0"
+    	 if (nachkommawert >= 1)  
+    	 nachkommawert -= 1
+    */
+
+    if (nachkommawert >= 1) {
+        nachkommabin += "1";
+        nachkommawert -= 1;
+    } else
+        nachkommabin += "0"
+
+
+    if (counter++ > 53)
+        break
 }
 
-console.log( vorkommabin, nachkommabin )
+console.log(vorkommabin, nachkommabin)
 
 
 
 // Schreibe ein Script. Das Skript soll wieder einen Wert als Literal in Quellcode deklarieren.
 // Diesmal soll ein binärer Nachkommawert wieder in eine dezimale Nachkommastelle umgerechnet werden.
 vorkommabin = "1111011" // 123
-nachkommabin = "11" 	// 0.75
+nachkommabin = "11" // 0.75
 
 vorkommazahl = 0
 nachkommazahl = 0
 
 faktor = 0
 
-for( i = vorkommabin.length -1  ; i >= 0  ; i-=1 ){
-	if( vorkommabin[i] == "1" )
-		vorkommazahl += 2 ** faktor
-	
-	faktor++
+for (i = vorkommabin.length - 1; i >= 0; i -= 1) {
+    if (vorkommabin[i] == "1")
+        vorkommazahl += 2 ** faktor
+
+    faktor++
 }
 
-console.log(vorkommazahl) 
+console.log(vorkommazahl)
 
 faktor = 1;
-for( i = 0;  i < nachkommabin.length; i++ ) {
-	
-	if( nachkommabin[i] == "1" )
-		nachkommazahl += 2 ** -faktor
-	
-	faktor+=1;
+for (i = 0; i < nachkommabin.length; i++) {
+
+    if (nachkommabin[i] == "1")
+        nachkommazahl += 2 ** -faktor
+
+    faktor += 1;
 }
 
-console.log(nachkommazahl) 
-console.log( vorkommazahl + nachkommazahl )
-
+console.log(nachkommazahl)
+console.log(vorkommazahl + nachkommazahl)

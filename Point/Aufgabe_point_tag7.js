@@ -26,26 +26,29 @@ getAngle(Point:Number)
 _____________________________
 
 */
-<html>
-<head></head>
-<body>
-    <script>
-    class Point{
-    constructor(x,y){
-        this.x=y;
-        this.y=y;
+<
+html >
+    <
+    head > < /head> <
+    body >
+    <
+    script >
+    class Point {
+        constructor(x, y) {
+            this.x = y;
+            this.y = y;
+        }
+        create Point(angle, distance)
+        getDistance(Point): Number
+        getAngle(Point: Number)
     }
-    create Point(angle,distance)
-    getDistance(Point):Number
-    getAngle(Point:Number) 
-}
 
-class Line{
-    constructor(x,y){
-        this.x=y;
-        this.y=y;
-    createPoint
-}
-    </script>
-</body>
-</html>
+class Line {
+    constructor(x, y) {
+            this.x = y;
+            this.y = y;
+            createPoint
+        } <
+        /script> <
+        /body> <
+        /html>

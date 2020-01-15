@@ -9,49 +9,49 @@
 
 // Aufgabe mit fibonacci(Wert)
 function fibonacci(n) {
-  if (n <= 2) return 1;
+    if (n <= 2) return 1;
 
-  const f = [0, 1, 1];
-  for(let i = 3; i <= n; i++) {
-    f[i] = f[i-1] + f[i-2];
-  }
-  return f[f.length-1];
+    const f = [0, 1, 1];
+    for (let i = 3; i <= n; i++) {
+        f[i] = f[i - 1] + f[i - 2];
+    }
+    return f[f.length - 1];
 }
 fibonacci(10) // Beispiel Ausgabe für den Wert 10
 
 // Zweite Lösung mit schleife
-function fibonacci( n ) {
- let a = 0;
- let b = 1;
- 
- while(n-- > 0) {
-	let zahl = a + b;
-	
-	console.log( zahl );
-	 
-	a = b;
- 	b = zahl
- 
-  }
+function fibonacci(n) {
+    let a = 0;
+    let b = 1;
+
+    while (n-- > 0) {
+        let zahl = a + b;
+
+        console.log(zahl);
+
+        a = b;
+        b = zahl
+
+    }
 }
 
 // Summiere die Zahlen die Fibonacci Folge aus der ersten Aufgabe.
-function fibonacci_summe( n ) {
- let a = 0;
- let b = 1;
- let summe = 0;
- 
- while(n-- > 0) {
-	let zahl = a + b;
-	
-	//console.log( zahl );
-	summe += zahl;
-	 
-	a = b;
- 	b = zahl
- 
-  }
-  console.log(summe)
+function fibonacci_summe(n) {
+    let a = 0;
+    let b = 1;
+    let summe = 0;
+
+    while (n-- > 0) {
+        let zahl = a + b;
+
+        //console.log( zahl );
+        summe += zahl;
+
+        a = b;
+        b = zahl
+
+    }
+    console.log(summe)
 }
 
 // Erstelle ein Script mit den Functionen:
@@ -69,10 +69,10 @@ function fibonacci_summe( n ) {
 // zwischen 18 und 99
 //
 function random_alter() {
-	let min = 18;
-	let max = 99;
-	
-	return parseInt( Math.random() * ( max - min ) + min) + 1;
+    let min = 18;
+    let max = 99;
+
+    return parseInt(Math.random() * (max - min) + min) + 1;
 }
 
 //
@@ -81,12 +81,12 @@ function random_alter() {
 // Alter
 //
 //
-function create_person( vorname, nachname, alter ){
-	return {
-		vorname: vorname,
-		nachname: nachname,
-		alter: alter
-	};
+function create_person(vorname, nachname, alter) {
+    return {
+        vorname: vorname,
+        nachname: nachname,
+        alter: alter
+    };
 }
 
 //
@@ -95,16 +95,16 @@ function create_person( vorname, nachname, alter ){
 // das erhaltene Objekt in dem Array persons
 //
 //
-function create_person_array( num_persons ) {
-	let persons = []
-	
-	
-	for( let i = 0; i < num_persons; i++) {
-	 let person = create_person("Vorname"+i,"Nachname"+i, random_alter());
-	 persons.push( person ) 
-	}
-	
-	return persons;
+function create_person_array(num_persons) {
+    let persons = []
+
+
+    for (let i = 0; i < num_persons; i++) {
+        let person = create_person("Vorname" + i, "Nachname" + i, random_alter());
+        persons.push(person)
+    }
+
+    return persons;
 }
 
 //
@@ -118,14 +118,12 @@ console.log(persons); // Kontrollausgabe
 // Filterung aller Personen deren Alter < 25 und
 // > 40 ist 
 //
-persons = persons.filter( p => p.alter >= 25 && p.alter <= 40 );
+persons = persons.filter(p => p.alter >= 25 && p.alter <= 40);
 console.log(persons); // Kontrollausgabe
 
 //
 // Mit der MAP Funktion werden aus dem Array
 // persons alle Vornamen gefiltert 
 //
-let persons_firstname = persons.map( p => p.vorname ) ;
-console.log( persons_firstname ); // Kontrollausgabe
-
-	
+let persons_firstname = persons.map(p => p.vorname);
+console.log(persons_firstname); // Kontrollausgabe

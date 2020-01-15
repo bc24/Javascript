@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Canvas - Frank Panzer</title>
+
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ein einfacher Performancetest mit dem Canvaselement." />
+    <meta name="keywords" content="HTML5, Canvas" />
+    <meta name="author" content="Frank Panzer" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script type="text/javascript" src="js/balls/BallManager.js"></script>
+</head>
+
+<body onload="init()">
+
+    <!-- canvasBalls -->
+    <div>
+        <form name="BallForm" onsubmit="return createBalls(document.BallForm.BallCount.value)">
+            Neue Anzahl an Kreisen:
+            <input type="text" name="BallCount">
+            <input type="submit" value="Absenden">
+        </form>
+
+        <p id="counterBalls">
+            Anzahl: 0
+        </p>
+        <canvas id="canvasBalls" width="500" height="400">
+            Dein Browser unterstützt das Canvas-Element nicht.
+        </canvas>
+        <p id="FPS">
+            <!-- place Stats from Stats.js here -->
+        </p>
+    </div>
+
+</body>
+
+</html>
