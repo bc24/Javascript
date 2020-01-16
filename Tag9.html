@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <canvas id='cvs' width='600px' height='400px' style='background-color:#d1d1d1;'></canvas>
+    <script>
+        /*  
+        Aufgabe 1
+        Erstelle eine Klasse Rectangle. 
+        Diese Klasse hat die Attribute x,y,w,h.
+        Die Klasse benötigt eine "draw" Methode.
+
+        Erstelle ein HTML Dokument mit einem Canvas.
+        Zeichne das Rechteck mit der "draw" Methode auf dem Canvas ein.
+
+        Füge deinem Dokument einen KeyEvent hinzu. 
+        Nutze die Tasten w,a,s,d um das Rechteck auf dem Canvas zu verschieben.  
+        !!!!! Das Rechteck MUSS in den Grenzen des Canvases bleiben !!!!!
+        Erweitere das Programm um die Tasten q, e, y, c.
+        Mit der Taste "q" soll das Rechteck breiter werden.
+        Mit der Taste "e" soll das Rechteck schmaler werden.
+
+        Mit der Taste "y" soll das Rechteck höher werden.
+        Mit der Taste "c"  soll das Rechteck kleiner werden.
+        !!!!! Das Rechteck MUSS in den Grenzen des Canvases bleiben !!!!!
+
+        Aufgabe 2
+        ) Sollte versucht werden, das Rechteck aus den Grenzen des Canvas zu bewegen, soll dies kurz in der Farbe Rot aufleuchten.
+        b) Füge ein zweites Rechteck an einer beliebigen Position ein.
+        Das erste Rechteck darf das zweite Rechteck nicht berühren
+
+        c) Füge beliebig viele Rechtecke ein.
+        Das erste Rechteck darf keins dieser Rechtecke berühren.
+        */
+
+        let cvs = document.getElementById('cvs');
+        let ctx = cvs.getContext('2d');
+
+        class Rectangle {
+            constructor(x, y, w, h) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+            }
+            draw() {
+                ctx.fillStyle = "#000000";
+                ctx.fillRect(25, 25, 100, 100);
+                ctx.stroke()
+            }
+        }
+
+
+        test = new Rectangle(25, 25, 100, 100)
+        test.draw()
+
+        document.body.onkeyup = (evt) => {
+                switch (evt.key) {
+                    // Links
+                    case "a":
+                        console.log("Links");
+                        test.a = test.draw() - 10;
+                        break;
+                        // Rechts
+                    case "d":
+                        console.log("Rechts");
+                        test.d = test + 10;
+                        break;
+                        // Hoch
+                    case "w":
+                        console.log("Hoch");
+                        test.w = test - 10;
+                        break;
+                        // Runter
+                    case "s":
+                        console.log("Runter");
+                        test.s = test + 10;
+                        break;
+                        // Breiter    
+                    case "q":
+                        console.log("Breiter")
+                        test.q = test++;
+                        break;
+                        // Schmaler    
+                    case "e":
+                        console.log("Schmaler")
+                        test.e = test--;
+                        break;
+                        // Höher
+                    case "y":
+                        console.log("Höher")
+                        test.y = test++;
+                        break;
+                        //Kleiner
+                    case "c":
+                        console.log("Kleiner")
+                        test.c = test--;
+                        break;
+                        test.draw(test.a, test.d, test.w, test.s, test.q, test.e, test.y, test.c)
+                }
+    </script>
+    <!-- Button -->
+    <h4>Stuerung</h4>
+    <button id="hoch">W</button><button id="links">A</button><button id="rechts">D</button><button id="runter">S</button>
+
+    <h4>Format</h4><button id="breiter">Q</button><button id="schmaler">E</button><button id="hoeher">Y</button><button id="kleiner">C</button>
+
+    <!-- Steuerung -->
+    <p id="hoch">
+        <script>
+            test.w;
+        </script>
+    </p>
+    <p id="links">
+        <script>
+            test.a;
+        </script>
+    </p>
+    <p id="runter">
+        <script>
+            test.d;
+        </script>
+    </p>
+    <p id="breiter">
+        <script>
+            test.s;
+        </script>
+    </p>
+
+    <!-- Format-->
+    <p id="schmaler">
+        <script>
+            test.q;
+        </script>
+    </p>
+    <p id="hoeher">
+        <script>
+            test.e;
+        </script>
+    </p>
+    <p id="kleiner">
+        <script>
+            test.c;
+        </script>
+    </p>
+
+    <h4>Farbe ändern</h4>
+    <button id="farbeBlau">Rechteck Blau färben</button>
+    <p id="farbeBlau"></p>
+
+    <h4>Hinternisse hinzufügen</h4>
+    <button id="hinderniss" background-color="#0400ff">Zweites Rechteck hinzufügen</button>
+
+
+
+</body>
+
+</html>

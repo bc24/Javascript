@@ -16,97 +16,93 @@ Beim Klicken auf ein Feld soll dies "aktiviert" werden. Ändere die Farbe in Rot
 -->
 
 <html>
+
 <head>
 </head>
+
 <body>
-<body onLoad="drawGrid(10,10);">
 
-<canvas id='cvs' width='600px' height='400px' style='border: 1px solid #d1d1d1;'></canvas>
+    <body onLoad="drawGrid(10,10);">
 
-<style>
-  div {
-    width: 60px;
-    height: 50px;
-    position: absolute;
-    top: 0;
-  }
-</style>
-<div style="background:blue" onmouseover="alert('Hallo')"></div><br>
-<div style="background:red" onmouseover="alert('Hier gibt es nichts')"></div>
+        <canvas id='cvs' width='600px' height='400px' style='border: 1px solid #d1d1d1;'></canvas>
 
- 
-<script>
-function drawGrid( x, y ) {
+        <style>
+            div {
+                width: 60px;
+                height: 50px;
+                position: absolute;
+                top: 0;
+            }
+        </style>
+        <div style="background:blue" onmouseover="alert('Hallo')"></div><br>
+        <div style="background:red" onmouseover="alert('Hier gibt es nichts')"></div>
 
 
- let cvs = document.getElementById('cvs');
- let ctx = cvs.getContext('2d');
- 
- let width  = Number(ctx.canvas.width);
- let height = Number(ctx.canvas.height);
- 
- let x_space = width / x;
- let y_space = height / y;
- 
- 
- ctx.clearRect( 0,0, width,height )
- 
- ctx.beginPath();
- 
- ctx.font = "14px Arial";
- 
- for( let i = 0; i < width; i += x_space ) {
-   ctx.moveTo( i, 0 );
-   ctx.lineTo( i, height );   
- }
- 
- for( let i = 0; i < width; i += y_space ) {
-   ctx.moveTo( 0, i );
-   ctx.lineTo( width, i );   
- }
- ctx.stroke();
- 
- cvs.onmousemove = function( evt ) {
-  x_space = ctx.canvas.width / x ;
-  y_space = ctx.canvas.height / y ;
-  
-  x_dim  = parseInt( (evt.x-cvs.offsetLeft) / x_space );
-  y_dim  = parseInt( (evt.y-cvs.offsetTop) / y_space );
-  
-  x_start = x_dim * x_space;
-  y_start = y_dim * y_space;
-  
-  ctx.fillStyle="#ffff00";
-  
-  ctx.fillRect( x_start+1, y_start+1, x_space-2, y_space-2 );
-  ctx.stroke();
-
-//  ctx.fillStyle="#ffffff";  
-//  ctx.fillRect(x_start-2, y_start-2, x_space+3, y_space+3)
-//  ctx.stroke();
-  
-ctx.opacity = Math.random();
+        <script>
+            function drawGrid(x, y) {
 
 
+                let cvs = document.getElementById('cvs');
+                let ctx = cvs.getContext('2d');
+
+                let width = Number(ctx.canvas.width);
+                let height = Number(ctx.canvas.height);
+
+                let x_space = width / x;
+                let y_space = height / y;
 
 
+                ctx.clearRect(0, 0, width, height)
 
+                ctx.beginPath();
 
- } 
-}
+                ctx.font = "14px Arial";
 
-function drag(evt) {
-  if (selectedElement) {
-    evt.preventDefault();
-    var dragX = evt.clientX;
-    var dragY = evt.clientY;
-    selectedElement.setAttributeNS(null, "x", dragX);
-    selectedElement.setAttributeNS(null, "y", dragY);
-  }
-}
+                for (let i = 0; i < width; i += x_space) {
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, height);
+                }
 
+                for (let i = 0; i < width; i += y_space) {
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(width, i);
+                }
+                ctx.stroke();
 
+                cvs.onmousemove = function(evt) {
+                    x_space = ctx.canvas.width / x;
+                    y_space = ctx.canvas.height / y;
 
-</script>
-</body>
+                    x_dim = parseInt((evt.x - cvs.offsetLeft) / x_space);
+                    y_dim = parseInt((evt.y - cvs.offsetTop) / y_space);
+
+                    x_start = x_dim * x_space;
+                    y_start = y_dim * y_space;
+
+                    ctx.fillStyle = "#ffff00";
+
+                    ctx.fillRect(x_start + 1, y_start + 1, x_space - 2, y_space - 2);
+                    ctx.stroke();
+
+                    //  ctx.fillStyle="#ffffff";  
+                    //  ctx.fillRect(x_start-2, y_start-2, x_space+3, y_space+3)
+                    //  ctx.stroke();
+
+                    ctx.opacity = Math.random();
+
+                }
+            }
+
+            function drag(evt) {
+                if (selectedElement) {
+                    evt.preventDefault();
+                    var dragX = evt.clientX;
+                    var dragY = evt.clientY;
+                    selectedElement.setAttributeNS(null, "x", dragX);
+                    selectedElement.setAttributeNS(null, "y", dragY);
+                }
+            }
+        </script>
+    </body>
+
 </html>
