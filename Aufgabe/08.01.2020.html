@@ -1,0 +1,154 @@
+<!--
+Aufgabe 1
+
+Erstelle eine HTML JavaScript Dokument. Füge diesem Dokument 3 Eingabefelder hinzu.
+Die Eingabefelder: Vorname, Nachname, Alter
+Füge einen Button "hinzufügen" hinzu.
+Beim Klicken auf den Button soll ein Personenobjekt erstellt und einem Array hinzugefügt werden.
+
+Füge der Seite ein Textfeld (p).
+Füge einen Button "Anzeigen" hinzu,  beim Klicken des Buttons sollen alle Personennamen in dem Textfeld  angezeigt werden<br>
+============================================================================================================================
+Aufgabe 2
+
+Erweitere die Aufgabe 1 und füge zu jedem Namen einen Button "Löschen" hinzu. 
+Mit diesem Button soll der Name aus dem Array gelöscht werden können.
+Nach dem Löschen sollen die verbleibenden Namen erneut angezeigt werden
+
+-->
+<html>
+<head>
+</head>
+<body>
+
+<h2>Aufgabe in HTML</h2>
+<h3>Aufgabe 1</h3>
+Erstelle eine HTML JavaScript Dokument. Füge diesem Dokument 3 Eingabefelder hinzu.<br>
+Die Eingabefelder: Vorname, Nachname, Alter<br>
+Füge einen Button "hinzufügen" hinzu.<br>
+Beim Klicken auf den Button soll ein Personenobjekt erstellt und einem Array hinzugefügt werden.<br>
+<p>
+Füge der Seite ein Textfeld (p).<br>
+Füge einen Button "Anzeigen" hinzu,  beim Klicken des Buttons sollen alle Personennamen in dem Textfeld  angezeigt werden<br><p>
+<p>
+<h3>Aufgabe 2</h3>
+Erweitere die Aufgabe 1 und füge zu jedem Namen einen Button "Löschen" hinzu.<br>
+Mit diesem Button soll der Name aus dem Array gelöscht werden können.<br>
+Nach dem Löschen sollen die verbleibenden Namen erneut angezeigt werden<br>
+<p><hr>
+<pre>
+	Vorname:	<input id='vorname'> 
+	Nachname:	<input id='nachname'>
+	Alter:		<input id='alter'>
+			<button onClick='einfuegen()'>hinzufügen</button> <button onClick='anzeigen()'>anzeigen</button>
+	Personennamen:<p>
+
+<p id='einfuegen_ausgabe'>
+<p id='anzeigen_ausgabe'>
+<p id='loescheVorname'></p>
+<p id='loescheNachname'></p>
+</pre>
+<hr>
+<div id="format">
+         <form id="HTML" onsubmit="HTML(event)">
+         <b>Name:</b>
+         <input type="text" name="name" id="name"  required="required" >
+        
+        <button type="submit" name="submit" id="submit" value="Submit" onsubmit="hinzufuegen()" >hinzufügen</button>
+
+    </form>
+        <div id="hinzufuegen"></div>
+</div>
+<hr>
+
+
+<script>
+var data = [];
+var i, item;
+
+function HTML(event){
+    event.preventDefault();
+    var name = document.getElementById("name").value;
+   
+    var userObject = {
+        name: name
+        };
+       data.push(userObject);
+
+        document.getElementById("hinzufuegen").innerHTML = "";
+        for (var i=0 ; i <data.length ; i++){
+            var theDiv ;
+            var container ;
+            var button;
+            var index;
+
+            theDiv = document.createElement( "div" );
+            button = document.createElement( "button");
+            index = document.createElement("input");
+            index.setAttribute('hidden', 'true');
+            button.setAttribute("id", "remove");
+            button.setAttribute("onclick", "removeItem(this)");            
+
+            for (item in data[i]) {
+            	var x = item + ":" + data[i][item] + "</br>" ;              
+                theDiv.innerHTML += item + ":" + data[i][item] + "</br>" ;
+                index.value += i; 
+
+            }
+            button.innerHTML += "Löschen";   
+           
+            container = document.getElementById( "hinzufuegen" );
+            container.appendChild( theDiv );
+            theDiv.appendChild (button);
+            theDiv.appendChild(index);
+        }
+}
+function removeItem(event){
+	let el = event;
+    let index = el.parentNode.lastElementChild.value;
+    el.parentElement.remove();
+    data.splice(index,1);
+}
+
+
+// Einfügen von Vorname, Nachname, Alter
+function einfuegen() {
+ let vorname = document.getElementById('vorname').value
+ let nachname = document.getElementById('nachname').value
+ let alter = document.getElementById('alter').value
+ let feld = document.getElementById('einfuegen_ausgabe');
+ let txt =[ vorname + " " +  nachname + " " + alter];
+ feld.innerText = txt;
+}
+
+// Anzeigen von Vorname, Nachname, Alter
+function anzeigen() {
+ let vorname = document.getElementById('vorname').value
+ let nachname = document.getElementById('nachname').value
+ let alter = document.getElementById('alter').value
+ let feld = document.getElementById('anzeigen_ausgabe');
+ let txt =[ vorname + " " +  nachname + " " + alter];
+ feld.innerText = txt;
+ }
+
+// Löschen von Vorname, Nachname
+function loesche_Vorname(){
+let vorname = document.getElementById('vorname').value
+let feld = document.getElementById('loescheVorname');
+let txt =[vorname]
+feld.innerText = txt;
+}
+
+function loesche_Nachname(){
+let vorname = document.getElementById('nachname').value
+let feld = document.getElementById('loescheNachname');
+let txt =[nachname]
+}
+
+
+</script>
+
+
+
+</body>
+</html>

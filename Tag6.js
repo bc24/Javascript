@@ -26,52 +26,49 @@ Motor
 _____________________
 */
 
-extends		// Vererbung
-move		// Übergabe
-instanceof	// Überprüssen um was es sich handelt
+extends // Vererbung
+move // Übergabe
+instanceof // Überprüssen um was es sich handelt
 // Klassen möglich groß schreiben
 
 
 // Endwerde Aufbau 1 oder Aufbau 2
 // Aufbau 1
 class Fahrzeuge {
-	constructor (width, height, velocity){
-	this.width=width;
-	this.height=height;
-	this.velocity;
-	}
-	move(distane){
-		console.log("Die Fahrt dauerte: ", distane/this.velocity);
-	}
+    constructor(width, height, velocity) {
+        this.width = width;
+        this.height = height;
+        this.velocity;
+    }
+    move(distane) {
+        console.log("Die Fahrt dauerte: ", distane / this.velocity);
+    }
 }
 
 // Aufbau 2
-Fahrzeug.prototype.move = function(distane){
-	constructor (width, height, velocity){
-	this.width=width;
-	this.height=height;
-	this.velocity;
-	}
-	move(distane){
-		console.log("Die Fahrt dauerte: ", distane/this.velocity);
-	}	
+Fahrzeug.prototype.move = function(distane) {
+    constructor(width, height, velocity) {
+        this.width = width;
+        this.height = height;
+        this.velocity;
+    }
+    move(distane) {
+        console.log("Die Fahrt dauerte: ", distane / this.velocity);
+    }
 }
 
-static KlassenMethode(){
-	console.log("Dies ist eine KlassenMethode")
+static KlassenMethode() {
+    console.log("Dies ist eine KlassenMethode")
 }
-class Auto extends Fahrzeug{		// extends	(Vererbung)
-	constructor(width,height,velocity,doors,seats){
-		super(width,height,velocity);
-		this.doors=doors;
-		this.seats=seats;
-	}
+class Auto extends Fahrzeug { // extends	(Vererbung)
+    constructor(width, height, velocity, doors, seats) {
+        super(width, height, velocity);
+        this.doors = doors;
+        this.seats = seats;
+    }
 }
 
 Auto.getClassName = undefined;
 
 // Erzeugen
-let f =new Auto(2,0.5,300,27,49)
-
-
-
+let f = new Auto(2, 0.5, 300, 27, 49)

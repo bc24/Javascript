@@ -115,4 +115,4 @@ Alles was größer als 5 kommt vor
 
 
 7 - Nodes
-Einzelne Knotenpunkt
+Einzelne Kottenpunkt
