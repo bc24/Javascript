@@ -1,119 +1,171 @@
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <script>
-/*            
-Aufgabe 1a
------------
-Implementiere die Strucktur einer verketteten Listen:
-Halte dich an das Klassendiagramm:
 
-Klassendiagramm
-===============
+<head>
+    <title></title>
+</head>
 
-___________________
-liste               |
-----------------    |
-value               |
-next:Liste          |
-----------------    |
-getValue()          |
-getNext():Liste     |
-setNext(value)      |
-____________________|
+<body>
+    <script>
+        /*
+                Aufgabe 1a        
+                Implementiere die Struktur einer verketteten Liste:
+                Halte dich an das Klassendiagramm: 
+                Schreibe ein Skript, welches die Listenstruktur nutzt und füge die Werte 5, 4, 2, 1, 7 hinzu.
 
-*/
-            liste=list(5,4,2,1,7)
-            //getValue()
-            //getNext():Liste
-            //setNext(value)
+                Aufgabe 1b
+                Schreibe eine Funktion um alle Elemente in der Liste zu zählen.
 
-            // Aufgabe 1b
-            // 5,4,2,1,7
-            let ersteListe1 = new Liste(5);
-            let ersteListe2 = new Liste(4);
-            let ersteListe3 = new Liste(2);
-            let ersteListe4 = new Liste(1);
-            let ersteListe5 = new Liste(7);
+                Aufgabe 1c
+                Schreibe eine Funktion und gebe alle Elemente in der Liste aus.
 
-// Aufgabe 1c
-// ----------
-// Schreibe eine Funktion um alle Elemente in der Liste zu zählen.
-function Liste(){
-    console.log(liste)
-}
+                Aufgabe 1d
+                Schreibe eine Funktion um die Elemente in der Liste zu sortieren.
+                Aufsteigend oder absteigend, sucht es euch aus.
 
-// Aufgabe 1d
-// ----------
-// Schreibe eine Funktion um die Elemente in der Liste zu sortieren.
-// Aufsteigend oder absteigend, sucht es euch aus.
-function ListeSotieren(){
-    console.log(liste.sort())       // Noch mal schauen wie man Listen sotiert
-}
+                Aufgabe 2a
+                Implementiere eine Queue:
+                Füge die Werte 5, 4, 2, 1, 7 zur Queue hinzu
+                Klassendiagramm 
+                    _____________________
+                | liste               |
+                | ----------------    |
+                | value               |
+                | next:Liste          |
+                | ----------------    |
+                | getValue()          |
+                | getNext():Liste     |
+                | setNext(value)      |
+                |_____________________| 
+                
+                Aufgabe 2b	
+                Schreibe eine Funktion und arbeite die Queue ab. Gebe alle Werte aus
+                5, 4, 2, 1, 7
 
-// Aufgabe 2a
-// ----------
-// Implementiere eine Queue:
+                Aufgabe 3
+                Implementiere einen binären Baum
+                Klassendiagramm
+                    _____________________
+                | liste               |
+                | ----------------    |
+                | value               |
+                | next:Liste          |
+                | ----------------    |
+                | getValue()          |
+                | getNext():Liste     |
+                | setNext(value)      |
+                |_____________________| 
 
-// ___________________
-// liste               |
-// ----------------    |
-// value               |
-// next:Liste          |
-// ----------------    |
-// getValue()          |
-// getNext():Liste     |
-// setNext(value)      |
-// ____________________|
+                */
 
-// Füge die Werte 5, 4, 2, 1, 7 zur Queue hinzu
-let Queue = (5, 4, 2, 1, 7)
+        // class Liste
+        // Eine simple Implementierung einer einfachverketteten Liste
+        class Liste {
+            // Instanziiert das Objekt
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+        }
 
-// Aufgabe 2b
-// ----------
-// Schreibe eine Funktion und arbeite die Queue ab. Gebe alle Werte aus
-// 5, 4, 2, 1, 7
-function QueueAusgabe(){
-    console.log(Queue)
-}
+        // Gibt den aktuellen Wert dieses Objekts zurück
+        Liste.prototype.getValue = function() {
+            return this.value;
+        }
 
-// Aufgabe 3a
-// ----------
-// Implementiere einen binären Baum
-// ___________________
-// liste               |
-// ----------------    |
-// value               |
-// next:Liste          |
-// ----------------    |
-// getValue()          |
-// getNext():Liste     |
-// setNext(value)      |
-// ____________________|
-// Füge die Werte 5, 4, 2, 1, 7 zum Baum hinzu
-while this.getNext()! = null(){
+        // Gibt das nächste Element dieses Objekts zurück
+        Liste.prototype.getNext = function() {
+            return this.next;
+        }
 
-this=this.getNext();
-this.setNext(new Liste(5))
-this.setNext(new Liste(4))
-this.setNext(new Liste(2))
-this.setNext(new Liste(1))
-this.setNext(new Liste(7))
-}
+        // Setzt das nächste Element dieses Objekts
+        Liste.prototype.setNext = function(next) {
+            this.next = next;
+        }
+
+        // Erzeugt das nächste Element und platziert 
+        // dieses an das Ende der Liste
+        Liste.prototype.newNext = function(value) {
+            let v = this;
+            while (v.getNext() != null) {
+                v = v.getNext();
+            }
+            let entry = new Liste(value);
+            v.setNext(entry);
+        }
+
+        // Zählt alle Elemente in der Liste
+        Liste.prototype.size = function() {
+            let v = this;
+            let counter = 1;
+            while (v.getNext() != null) {
+                counter++;
+                v = v.getNext();
+            }
+            return counter;
+        }
+
+        // Gibt alle Elemente in der Liste aus
+        Liste.prototype.print = function() {
+            let v = this;
+            while (v.getNext() != null) {
+                console.log(v.getValue())
+                v = v.getNext();
+            }
+            console.log(v.getValue())
+
+        }
+
+        // Sortiert die Elemente der Liste
+        Liste.prototype.sort = function() {
+            let arr = [];
+            let v = this;
 
 
-// Aufgabe 3b
-// ----------
-// Schreibe eine Funktion um einen Wert im Baum zu suchen
-function Sotieren(){
+            while (v.getNext() != null) {
+                arr.push(v);
+                v = v.getNext();
+            }
 
-}
+            arr.push(v);
+            arr.sort(function(a, b) {
+                return b.getValue() - a.getValue()
+            });
 
- 
+            for (let i = 0; i < arr.length - 1; i++) {
+                arr[i].setNext(arr[i + 1]);
+            }
+            arr[arr.length - 1].setNext(null);
 
+            return arr[0];
+        }
 
-        </script>
-    </body>
+        // Instanziiert einee neue Liste
+        let first = new Liste(5);
+
+        // Fügt die 4 am Ende der Liste hinzu
+        first.newNext(4);
+
+        // Fügt die 2 am Ende der Liste hinzu
+        first.newNext(2);
+
+        // Fügt die 1 am Ende der Liste hinzu
+        first.newNext(1);
+
+        // Fügt die 7 am Ende der Liste hinzu
+        first.newNext(7);
+
+        // Gibt die Anzahl der Elemente in der Liste aus
+        console.log(first.size());
+
+        // Gibt alle Elemente der Lsite aus
+        first.print();
+
+        // Sortiert die Liste aufsteigend
+        first = first.sort();
+
+        // Gibt alle Elemente der Liste aus
+        first.print();
+    </script>
+</body>
+
 </html>
