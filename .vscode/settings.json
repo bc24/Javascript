@@ -1,5 +1,8 @@
 {
     "sync.autoDownload": true,
+    "sync.syncExtensions": false,
     "sync.autoUpload": true,
-    "sync.forceDownload": true
+    "sync.forceUpload": true,
+    "sync.forceDownload": true,
+    "sync.quietSync": true
 }
