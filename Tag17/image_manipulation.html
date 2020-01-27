@@ -1,0 +1,127 @@
+<html><head></head>
+
+<body>
+
+<script>
+
+//
+// erzeugt einen canvas
+// 
+let cvs = document.createElement('canvas');
+
+//
+// id vergeben
+cvs.id = 'cvs';
+
+//
+// breite und höhe
+cvs.width = 500;
+cvs.height = 400;
+
+//
+// hintergrundfarbe
+cvs.style.backgroundColor='#d1d1d1';
+
+
+//
+// canvas zum webseiten body hinzufügen
+document.body.appendChild( cvs );
+
+//
+// context aus dem canvas erzeugen
+//
+let ctx = cvs.getContext('2d');
+
+
+//
+// füllfarbe auf rot setzen
+ctx.fillStyle='#ff0000';
+
+//
+// füllt das rechteck. 
+ctx.fillRect( 0,0, cvs.width, cvs.height );
+
+
+
+//ctx.putImageData( img, 0, 0  );
+
+//
+// erzeugt ein neues image  128x128
+let image = new Image( 128,128 ) ;
+
+
+//
+// angabe der bildquelle (aktuelles verzeichnis)
+image.src = 'mad.png';
+
+
+image.onerror = function( ) {
+	throw new Error(`Bild ${image.src} konnte nicht geladen werden`);
+}
+
+
+
+//
+// wir fangen den onload event ab.
+//
+image.onload= function() {
+
+	let background = ctx.getImageData(0,0,128,128);
+
+	//
+	// zeichne das bild auf dem canvas 
+	// geht erst, nachdem das bild fertig geladen wurde!
+	//
+	ctx.drawImage( image, 0,0,128,128)
+
+
+	//
+	// lädt einen teilausschnitt 128x128 vom canvas in 
+	// die variable img
+	//
+	let img = ctx.getImageData(0,0,128,128);
+
+
+
+
+	//
+	// setzt die bildpixelinformationen (img.data) für die farbe grün
+	// auf volle intensität. (o-ton: edgar, VOLLE PULLE!)
+	//
+	//
+	//img.data.set( img.data.map( (m,index)=> index % 4 == 1 ? 255 : m ) );
+	
+	
+	//
+	//  Nutzt die informationen aus background um die  schwarze hintergrundfarbe
+	//  vom bild zu entfernen
+	//
+	 
+	for( let i = 0; i < img.data.length; i+=4 ) {
+		if( img.data[i] == 0 && img.data[i+1] == 0 && img.data[i+2] == 0) {
+			img.data[i] = background.data[i];
+			img.data[i+1] = background.data[i+1 ];
+			img.data[i+2] = background.data[i+2];
+			img.data[i+3] = background.data[i+3];
+		
+		}	
+	}
+	
+
+	
+	//
+	// zeichnet das geänderte bild wieder auf das canvas
+	//
+	ctx.putImageData( img, 0, 0  );
+}
+
+function save() {
+	let cvs = document.getElementById('cvs');
+	let link = document.createElement('link');
+	document.body.appendChild( link );
+	link.setAttribute('download', 'canvas.image.png');
+	link.setAttribute('href' , cvs.toDataURL( "image/png").replace("image/png", "image/octet-stream"));
+	link.click();
+}
+</script>
+</body></html>

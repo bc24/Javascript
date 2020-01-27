@@ -1,0 +1,9 @@
+Master
+    |-  Commit1
+            |-  Datei1
+            |-  Datei2
+    |-  Commit2
+            |- Datei1 aendern
+            |- Dev
+                |-Commit3
+                    |- Datei hinzufügen
