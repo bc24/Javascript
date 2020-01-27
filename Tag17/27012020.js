@@ -46,3 +46,8 @@ try {
 }
 
 typeof // kommt auf jeden Fall dran
+
+
+
+// google-chrome --disable-web-security
+// Linux für Crome um die Sicherheit umgehenen zu können bei Localen Datenen
