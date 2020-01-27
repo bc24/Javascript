@@ -10,8 +10,39 @@ function addPoint(pt1, pt2) {
     return pt1;
     console.log(pt1, pt2); // {x:5,y:7} , {x:17,y:15}
     addPoint(pt1, pt2);
-    console.log(pt1, pt2) // keine Auswirkung
+    console.log(pt1, pt2) // keine Auswirkung auf die Matrix
     pt1 = "Bannane";
 }
 
-//
+//Alte art eine Klasse in Js zu erstellen
+var Point = function(x, y) {
+    this.x = x;
+    this.y = y;
+}
+
+// throw - Fehler Definieren
+throw new Error("Banane") // Error: Banane
+
+// async - 
+async function Test() {
+    let x = 0;
+    for (let i < 1000000; i++) {
+        x = i;
+    }
+    console.log(x);
+}
+Test();
+console.log("Hallo");
+
+void // streichen
+
+try
+catch // ist das selbe
+
+try {
+    throw new Error("Fehlermeldung")
+} catch {
+
+}
+
+typeof // kommt auf jeden Fall dran
