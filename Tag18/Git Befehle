@@ -1,0 +1,19 @@
+git 
+git init                                        // Neues Repro      --bare
+git add Dateinamen .                            // Neue Dateien hinzufügen
+git clone Verzeichenis                          // Klont ein Repro
+git app                                         // Datei hinzufügen
+git status                                      // Aktueller Zustand
+git commit                                      // Ausführen    -a (Alle änderung übernehmen)  --reset-author (Aktueles Verzeichnis mit Löschen)    
+git remote add origin Adresse                   // Löschen
+git push                                        // Updaten zum Server   -u origin master
+git pull                                        // Updaten zum Localen Verzeichnis
+--graph                                         // Auflistung
+git log                                         // Log auflisten    --online
+git branch                                      //
+git checkout                                    //
+git ls-files                                    // Auflisten von allen Dateien
+
+git clone --bare Quell-Verzeichnis Ziel-Verzeichnis
+git config --local --list
+git config --local -add remote.origin.url LocalesVerzeichnis
